@@ -5,6 +5,7 @@ import clsx from "clsx";
 import Header from "@ext/components/header";
 import { getServerSession } from "next-auth";
 import Provider from "@ext/components/provider";
+import { options } from "@ext/lib/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession();
+  const session = await getServerSession(options);
   return (
     <html lang="en">
       <body className={clsx("max-w-[680px] mx-auto w-full", inter.className)}>
