@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { currentUser } from "./extensions/current-user";
 
-const prisma = new PrismaClient().$extends(currentUser());
+const prisma = new PrismaClient();
 const globalForPrisma = global as unknown as { prisma: typeof prisma };
 export const db = globalForPrisma.prisma || prisma;
 
