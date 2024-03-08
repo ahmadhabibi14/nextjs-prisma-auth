@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     let statusMessage: string = "Bad Request";
 
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === 'P2002') {
+      if (error.code === "P2002") {
         errorMessage = "username or email already exist"
         statusCode = 409
         statusMessage = "Conflict"
