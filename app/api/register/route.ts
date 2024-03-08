@@ -1,8 +1,10 @@
 import { db } from "@/lib/db";
 import { hash } from "bcryptjs";
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server"
+import { Prisma } from "@prisma/client";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const { username, fullName, email, password } = (await req.json()) as {
       username: string;
@@ -24,7 +26,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       code: 200,
       status: "success",
-      message: "User created successfully",
+      message: "user created successfully",
       data: {
         user: {
           username: user.username,
@@ -34,12 +36,32 @@ export async function POST(req: Request) {
       },
     });
   } catch (error: any) {
+    let statusCode: number = 400;
+    let errorMessage: string = error.message;
+    let statusMessage: string = "Bad Request";
+
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === 'P2002') {
+        errorMessage = "username or email already exist"
+        statusCode = 409
+        statusMessage = "Conflict"
+      } else {
+        errorMessage = error.message
+        statusCode = 500
+        statusMessage = "Internal Server Error"
+      }
+    }
+
     return new NextResponse(
       JSON.stringify({
-        status: "error",
-        message: error.message
+        code: statusCode,
+        status: statusMessage,
+        error: errorMessage,
       }),
-      { status: 500 }
+      {
+        status: statusCode,
+        headers: { "Content-Type": "application/json" }
+      }
     );
   }
 }
