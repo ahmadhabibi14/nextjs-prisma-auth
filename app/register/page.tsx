@@ -105,8 +105,8 @@ export default function Register() {
         />
         <button
           type="submit"
-          disabled={loading}
-          className="disable:bg-blue-400 bg-blue-500 py-2 rounded-full text-white font-semibold hover:bg-blue-400 flex flex-row justify-center"
+          disabled={loading || !formValues.email || !formValues.password || !formValues.fullName || !formValues.username}
+          className="disabled:bg-zinc-200 disabled:text-zinc-700 disabled:cursor-not-allowed bg-blue-500 py-2 rounded-full text-white font-semibold hover:bg-blue-400 flex flex-row justify-center"
         >
           {loading ? "Loading..." : "Register"}
         </button>
