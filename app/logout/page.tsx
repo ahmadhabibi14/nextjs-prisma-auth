@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { signOut } from "next-auth/react";
 import { useState } from "react";
@@ -10,14 +10,17 @@ export default function Logout() {
   const onSignOut = async () => {
     setLoading(true);
 
-    await signOut().then(() => {
-      toast.success("Logout Successful");
-    }).catch((error) => {
-      toast.error(error as string);
-    }).finally(() => {
-      setLoading(false);
-    });
-  }
+    await signOut()
+      .then(() => {
+        toast.success("Logout Successful");
+      })
+      .catch((error) => {
+        toast.error(error as string);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   return (
     <div>
@@ -36,9 +39,10 @@ export default function Logout() {
       <button
         onClick={onSignOut}
         disabled={loading}
-        className="bg-red-500 hover:bg-red-400 py-2 px-10 rounded-full text-white">
+        className="bg-red-500 hover:bg-red-400 py-2 px-10 rounded-full text-white"
+      >
         {loading ? "Logging out..." : "Logout"}
       </button>
     </div>
-  )
+  );
 }

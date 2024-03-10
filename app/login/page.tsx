@@ -36,7 +36,7 @@ export default function Login() {
       .then((response) => {
         if (response?.ok) {
           toast.success("Login Successful");
-          setTimeout(() => window.location.href = "/", 3000);
+          setTimeout(() => (window.location.href = "/"), 3000);
         } else {
           toast.error(response?.error as string);
         }
@@ -77,6 +77,7 @@ export default function Login() {
           placeholder="email@example.com"
           value={formValues.email}
           onChange={handleChange}
+          required
         />
         <InputBox
           label="Password"
@@ -86,11 +87,12 @@ export default function Login() {
           placeholder="secretpassword994"
           value={formValues.password}
           onChange={handleChange}
+          required
         />
         <button
           type="submit"
           disabled={loading || !formValues.email || !formValues.password}
-          className="disabled:bg-zinc-200 disabled:text-zinc-700 disabled:cursor-not-allowed bg-blue-500 py-2 rounded-full text-white font-semibold hover:bg-blue-400 flex flex-row justify-center"
+          className="disabled:bg-zinc-200 disabled:text-zinc-700 disabled:cursor-not-allowed bg-blue-500 py-2 rounded-full text-white font-semibold hover:bg-blue-400 select-none flex flex-row justify-center"
         >
           {loading ? "Loading..." : "Login"}
         </button>

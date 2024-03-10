@@ -19,7 +19,7 @@ const Me = async () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default Me;

@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.loading-container {
+  @apply bg-transparent h-[3px] w-full fixed left-0 top-0;
+}
+
+.loading-bar {
+  @apply h-full bg-blue-500;
+  transition: width 0.5s ease-in-out;
+}
+

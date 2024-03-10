@@ -75,6 +75,7 @@ export default function Register() {
           placeholder="username123"
           value={formValues.username}
           onChange={handleChange}
+          required
         />
         <InputBox
           label="Full Name"
@@ -84,6 +85,7 @@ export default function Register() {
           placeholder="Gojo Satoru"
           value={formValues.fullName}
           onChange={handleChange}
+          required
         />
         <InputBox
           label="Email"
@@ -93,6 +95,7 @@ export default function Register() {
           placeholder="email@example.com"
           value={formValues.email}
           onChange={handleChange}
+          required
         />
         <InputBox
           label="Password"
@@ -102,11 +105,12 @@ export default function Register() {
           placeholder="secretpassword994"
           value={formValues.password}
           onChange={handleChange}
+          required
         />
         <button
           type="submit"
           disabled={loading || !formValues.email || !formValues.password || !formValues.fullName || !formValues.username}
-          className="disabled:bg-zinc-200 disabled:text-zinc-700 disabled:cursor-not-allowed bg-blue-500 py-2 rounded-full text-white font-semibold hover:bg-blue-400 flex flex-row justify-center"
+          className="disabled:bg-zinc-200 disabled:text-zinc-700 disabled:cursor-not-allowed bg-blue-500 py-2 rounded-full text-white select-none font-semibold hover:bg-blue-400 flex flex-row justify-center"
         >
           {loading ? "Loading..." : "Register"}
         </button>
