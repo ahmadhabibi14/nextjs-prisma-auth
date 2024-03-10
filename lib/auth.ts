@@ -51,7 +51,6 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/login",
-    error: "/login",
   },
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
