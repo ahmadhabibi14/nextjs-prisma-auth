@@ -45,6 +45,7 @@ export default function InputBox({ ...inputProps }: inputProps) {
             className="caret-blue-500 border border-zinc-200 py-2 px-5 rounded-full focus:outline focus:border-blue-500 focus:outline-blue-500"
           />
           <button
+            title="show/hide password"
             type="button"
             onClick={(e) => {
               e.preventDefault();

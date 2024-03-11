@@ -36,13 +36,16 @@ export default function Logout() {
         pauseOnHover
         theme="light"
       />
-      <button
-        onClick={onSignOut}
-        disabled={loading}
-        className="bg-red-500 hover:bg-red-400 py-2 px-10 rounded-full text-white"
-      >
-        {loading ? "Logging out..." : "Logout"}
-      </button>
+      <div className="flex flex-col items-center gap-3">
+        <p>Click this button to logout 👇</p>
+        <button
+          onClick={onSignOut}
+          disabled={loading}
+          className="bg-red-500/10 hover:bg-red-500/15 text-red-500 py-2.5 px-5 font-semibold text-sm rounded-full"
+        >
+          {loading ? "Logging out..." : "Logout"}
+        </button>
+      </div>
     </div>
   );
 }
