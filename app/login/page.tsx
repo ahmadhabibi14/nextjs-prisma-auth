@@ -1,11 +1,9 @@
 "use client";
 
 import React, { ChangeEvent, useState } from "react";
-import { redirect } from "next/navigation";
 import { signIn } from "next-auth/react";
 import InputBox from "@/components/inputbox";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 type FormData = {
   email: string;
@@ -46,28 +44,12 @@ export default function Login() {
         toast.error(error as string);
       })
       .finally(() => {
-        setFormValues({
-          email: "",
-          password: "",
-        });
         setLoading(false);
       });
   };
 
   return (
     <div className="flex flex-col">
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <form className="flex flex-col w-[450px] gap-4" onSubmit={onSubmit}>
         <InputBox
           label="Email"

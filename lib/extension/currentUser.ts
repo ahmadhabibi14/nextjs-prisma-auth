@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth";
 
-export function currentUser() {
+export function currentUser(){
   return Prisma.defineExtension((client) => {
     return client.$extends({
       model: {

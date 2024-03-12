@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
-import NextTopLoader from "nextjs-toploader";
+import { authOptions } from "@/lib/auth";
+import db from "@/lib/db";
+import { getServerSession } from "next-auth";
+import { User } from "@/types/user";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,21 +24,26 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession(authOptions);
+  const ses = session?.user;
+  const user = (await db.user.current()) as User;
+
   return (
-    <html lang="en" className="min-h-screen">
+    <html lang="en" className={`min-h-screen ${inter.className}`}>
       <body className="bg-zinc-50 min-h-screen max-w-4xl mx-auto w-full font-sans text-zinc-700">
-        <NextTopLoader
-          color="#3b82f6"
-          initialPosition={0.08}
-          crawlSpeed={200}
-          height={3}
-          crawl={true}
-          showSpinner={true}
-          easing="ease"
-          speed={200}
-          shadow="0 0 10px #3b82f6,0 0 5px #3b82f6"
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
         />
-        <Navbar />
+        <Navbar user={user} />
         <main className="min-h-[70vh] my-5 bg-white rounded-md shadow p-5">
           {children}
         </main>

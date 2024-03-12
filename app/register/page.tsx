@@ -3,8 +3,7 @@
 import React, { ChangeEvent, useState } from "react";
 import axios from "axios";
 import InputBox from "@/components/inputbox";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 type FormData = {
   username: string;
@@ -42,30 +41,13 @@ export default function Register() {
         console.log(error);
       })
       .finally(() => {
-        setFormValues({
-          username: "",
-          fullName: "",
-          email: "",
-          password: "",
-        });
         setLoading(false);
       });
   };
 
   return (
     <div className="flex flex-col">
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      
       <form className="flex flex-col w-[450px] gap-4" onSubmit={onSubmit}>
         <InputBox
           label="Username"
